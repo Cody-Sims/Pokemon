@@ -1,0 +1,62 @@
+package MoveCatalog;
+
+import static MoveCatalog.MoveConstants.*;
+
+//Todo create a move class, contains type, damage, effect, etc
+public class Move {
+    // Potentially parse a csv file for the information
+    // Potentially split each move into Types and create a HashMap for each Typing
+    String _name;
+    String _category;
+    String _type;
+    int _power;
+    int _accuracy;
+
+    public Move(String name){
+        _name = name;
+        setInfo();
+    }
+
+    private void setInfo(){
+        System.out.println(_name + " : Power" + MOVE_POWER.get(_name));
+        System.out.println();
+        _category = MOVE_CATEGORY.get(_name);
+        _type = MOVE_TYPES.get(_name);
+
+        if(!MOVE_POWER.get(_name).equals("")){
+            _power = Integer.parseInt(MOVE_POWER.get(_name));
+        }
+        else{
+            _power = 0;
+            //Todo set status effect
+        }
+
+        if(!MOVE_ACCURACY.get(_name).equals("")){
+            _accuracy = Integer.parseInt(MOVE_ACCURACY.get(_name));
+        }else {
+            _accuracy = 100;
+        }
+
+
+    }
+    public String getName(){
+        return _name;
+    }
+
+    public String getCategory(){
+        return _category;
+    }
+
+    public String getType() {
+        return _type;
+    }
+
+    public int getPower() {
+        return _power;
+    }
+
+    public int getAccuracy(){
+        return _accuracy;
+    }
+
+}

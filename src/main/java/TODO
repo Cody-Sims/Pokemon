@@ -1,0 +1,42 @@
+A pokemon can learn specific moves. Find those moves and randomly pick them up to four.
+Find moves between level 1 and the current level and add those to the pokemons move list.
+If there is less than 4 moves then don't add a new one. And don't add repeats
+
+
+
+
+
+
+There are a few things I want you to do Logan, please check these off as you go.
+1) This one isn't imperative and it honestly won't make that much of a difference, so feel free to do this one last
+or just not do it at all. In the pokemon folder under learnable moves, get rid of every column except level and move name
+Please work on others first to be honest.
+2) Categorize every move in MoveList.csv as either attack or status. We will use this for determining how to deal
+    with these moves in battle.
+3) Create a class that deals with every status. For design purposes lets just create two classes. One for special statuses
+such as paralysis, poison, etc. Then create another class that deals with stat changing effects such as lowers defense.
+You might need to look into how these effects work in game, but I will leave this to you.
+
+Just a heads up that while you are doing this, I will be working on calculating pokemons stats including evs, ivs, and
+just stats at certain levels. I will also be implementing Pokemon moves. A pokemon will get random moves of its level
+up to four. Hopefully after this we will have a complete battle system barring items and the ability to switch pokemon.
+Which leads me to my next task
+
+When we have finished the fighting system, we can move on to implementing 3 things: Inventory, Pokemon Switching, and
+a transition screen between moves and the fight screen. I feel like the best task will be to implement Pokemon Switching
+However, I will write an outline for each option.
+
+This will teach you csv manipulation and javafx
+Pokemon Switching: In order to be able to switch pokemon, we first need to have more than one pokemon.
+Yet, how can we have more than one pokemon? Assuming we catch a pokemon, we need to be able to remember that we
+have this pokemon? A potential solution could include storing pokemon's data in a csv file. We would need to store
+everything that makes this pokemon a player pokemon. This would include everything from, Name, type, to more variable
+statistics such as move list, ivs, evs, etc.
+
+This will teach you javafx
+Transition Screen: This is more simplistic, but it has more work with javafx and screen manipulation.
+This will mostly include creating panes and adding text to the screen.
+
+This will teach you image manipulation, csv manipulation, javafx, web parsing
+Inventory: This is by far the hardest part besides battle. It will consist of almost everything that makes up battling
+This includes web parsing to find a list of all the items. We will also need to find images for said items.
