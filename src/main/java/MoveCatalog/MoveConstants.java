@@ -3,6 +3,7 @@ package MoveCatalog;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,13 +11,14 @@ import java.util.Map;
 public class MoveConstants {
     public static final String[][] data = getData();
     public static String[][] getData(){
-        String[][] data = new String[829][6];
+        String[][] data = new String[800][8];
         try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/PokemonStats/MoveList.csv"))) {
             for(int i = 0; i < data.length; i++) {
                 String row = br.readLine();
+                String[] stats = row.split("[,]");
+                System.out.println(Arrays.toString(stats));
                 for(int j = 0; j < data[i].length; j++){
-                    String[] stats = row.split(",");
-                    data[i][j] = stats[j];
+                    data[i][j] = stats[j].strip();
                 }
             }
         }
@@ -66,7 +68,7 @@ public class MoveConstants {
     public static Map<String, String> getMoveDescription(){
         Map<String, String> map = new HashMap<>();
         for(int row = 0;  row < data.length; row++){
-            map.put(data[row][0], data[row][7]);
+            map.put(data[row][0], data[row][6]);
         }
         return Collections.unmodifiableMap(map);
     }

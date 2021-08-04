@@ -7,14 +7,15 @@ public class Poison {
 
     // need something to start these after a pokemon is poisoned.
     // need something to break these after a pokemon is healed.
+    public void poisonDamage(){
+        damage = (Math.round(_hp%8));
+        _hp = _hp - damage;
+    }
     public void badPoisonDamage(){
         _hp =_hp -badDamage;
         if(badDamage >15*(_hp%16)) {
-            badDamage = badDamage;
+            badDamage = badDamage + _hp%8;
         }
     }
-    public void poisonDamage{
-            damage = (Math.round(_hp%8));
-            _hp = _hp - damage;
-    }
+
 }
