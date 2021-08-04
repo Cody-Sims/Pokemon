@@ -1,5 +1,10 @@
 package MoveCatalog;
 
+import MoveCatalog.Effects.Effect;
+import Pokemon.Pokemon;
+
+
+import static MoveCatalog.Effects.getEffect.getEffect;
 import static MoveCatalog.MoveConstants.*;
 
 //Todo create a move class, contains type, damage, effect, etc
@@ -9,11 +14,18 @@ public class Move {
     String _name;
     String _category;
     String _type;
+    String _description;
+
     int _power;
     int _accuracy;
 
-    public Move(String name){
+    Effect _effect;
+
+    Pokemon _pokemon;
+
+    public Move(String name, Pokemon pokemon){
         _name = name;
+        _pokemon = pokemon;
         setInfo();
     }
 
@@ -22,6 +34,7 @@ public class Move {
         System.out.println();
         _category = MOVE_CATEGORY.get(_name);
         _type = MOVE_TYPES.get(_name);
+        _description = MOVE_DESCRIPTION.get(_name);
 
         if(!MOVE_POWER.get(_name).equals("")){
             _power = Integer.parseInt(MOVE_POWER.get(_name));
@@ -37,8 +50,11 @@ public class Move {
             _accuracy = 100;
         }
 
+        _effect = getEffect(_description);
 
     }
+
+
     public String getName(){
         return _name;
     }
@@ -59,4 +75,7 @@ public class Move {
         return _accuracy;
     }
 
+    public void calculateEffect(){
+        _effect.updateStat(_pokemon);
+    }
 }

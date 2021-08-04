@@ -61,4 +61,13 @@ public class MoveConstants {
         }
         return Collections.unmodifiableMap(map);
     }
+
+    public static final Map<String, String> MOVE_DESCRIPTION = getMoveDescription();
+    public static Map<String, String> getMoveDescription(){
+        Map<String, String> map = new HashMap<>();
+        for(int row = 0;  row < data.length; row++){
+            map.put(data[row][0], data[row][7]);
+        }
+        return Collections.unmodifiableMap(map);
+    }
 }

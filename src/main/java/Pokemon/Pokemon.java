@@ -46,6 +46,24 @@ public class Pokemon {
     private int _specialDefense;
     private int _speed;
 
+    // Statistics in Battle
+    private int _battleAttack;
+    private int _battleDefense;
+    private int _battleSpecialAttack;
+    private int _battleSpecialDefense;
+    private int _battleSpeed;
+
+    //Battle Stages
+    private int _attackStage = 0;
+    private int _defenseStage = 0;
+    private int _specialAttackStage = 0;
+    private int _specialDefenseStage = 0;
+    private int _speedStage = 0;
+
+    //StatusEffects
+    private boolean _poisoned;
+    private boolean _paralyzed;
+
     // Ivs
     private int _hpIv = 0;
     private int _attackIv = 0;
@@ -93,18 +111,38 @@ public class Pokemon {
         calculateStats();
         findLearnableMoves();
         setRandomMoves();
+
+
     }
+
+    //Resets stuff to normal after battle
+    public void resetAfterBattle(){
+        //Battle Stages
+        _attackStage = 0;
+        _defenseStage = 0;
+        _specialAttackStage = 0;
+        _specialDefenseStage = 0;
+        _speedStage = 0;
+    }
+
 
     //Todo calculate stats and check for new moves
 
     public void calculateStats(){
         _hp = (int)(Math.floor(0.01 * (2 * _baseHp + _baseHp + _hpIv + Math.floor(0.25 * _hpEv)) * _level) + _level + 10);
-
         _attack = (int)(Math.floor(0.01 * (2 * _baseAttack + _attackIv + Math.floor(0.25 * _attackEv)) * _level) + 5);
         _defense = (int)(Math.floor(0.01 * (2 * _baseDefense + _defenseIv + Math.floor(0.25 * _defenseEv)) * _level) + 5);
         _specialAttack = (int)(Math.floor(0.01 * (2 * _baseSpecialAttack + _specialAttackIv + Math.floor(0.25 * _specialAttackEv)) * _level) + 5);
         _specialDefense = (int)(Math.floor(0.01 * (2 * _baseSpecialAttack + _specialDefenseIv + Math.floor(0.25 * _specialDefenseEv)) * _level) + 5);
         _speed= (int)(Math.floor(0.01 * (2 * _baseSpeed + _speedIv + Math.floor(0.25 * _speedEv)) * _level) + 5);
+    }
+
+    public void calculateBattleStats(){
+        _battleAttack = _attack * _attackStage;
+        _battleDefense = _defense * _defenseStage;
+        _battleSpecialAttack = _specialAttack * _specialAttackStage;
+        _battleSpecialDefense= _specialDefense * _specialDefenseStage;
+        _battleSpeed = _speed * _speedStage;
     }
 
     public void findLearnableMoves(){
@@ -139,20 +177,21 @@ public class Pokemon {
         }
 
         if(moves.size() >= 1){
-            _moveOne = new Move(moves.get(moves.size() - 1));
+            _moveOne = new Move(moves.get(moves.size() - 1), this);
         }
         if(moves.size() >= 2){
-            _moveTwo = new Move(moves.get(moves.size() - 2));
+            _moveTwo = new Move(moves.get(moves.size() - 2), this);
         }
         if(moves.size() >= 3){
-            _moveThree = new Move(moves.get(moves.size() - 3));
+            _moveThree = new Move(moves.get(moves.size() - 3), this);
         }
         if(moves.size() >= 4){
-            _moveFour = new Move(moves.get(moves.size() - 4));
+            _moveFour = new Move(moves.get(moves.size() - 4), this);
         }
     }
 
     private void setImageFront(){
+        //Todo find inputstream path before roll out
         _imgFront = new Image("PokemonSprites/front/" + _pokedexNumber +".png", POKEMON_WIDTH, POKEMON_HEIGHT,
                 true, false);
         _imgFrontHeight = (int)_imgFront.getHeight();
@@ -182,6 +221,14 @@ public class Pokemon {
 
     public void set_currentHP(int _currentHP) {
         this._currentHP = _currentHP;
+    }
+
+    public void setAttackStage(int stage){
+        _attackStage = stage;
+    }
+
+    public int getAttackStage(){
+        return _attackStage;
     }
 
     public int getCurrentHP() {

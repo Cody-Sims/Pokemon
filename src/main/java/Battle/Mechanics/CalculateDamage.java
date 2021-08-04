@@ -1,6 +1,7 @@
 package Battle.Mechanics;
 
 import MoveCatalog.Move;
+import MoveCatalog.StatusEffects.Paralysis;
 import Pokemon.Pokemon;
 
 import java.util.concurrent.ThreadLocalRandom;
@@ -11,12 +12,16 @@ import java.util.concurrent.ThreadLocalRandom;
 public class CalculateDamage {
     public static double calculateDamage(Move move, Pokemon attackingPokemon, Pokemon defendingPokemon) {
         int level = attackingPokemon.getLevel();
-        int attackStat = getAttackStat(move,attackingPokemon); // Todo implement in Pokemon Class
-        int movePower = move.getPower();    //Todo implement in move Class
-        int enemyDefense = getDefenseStat(move, defendingPokemon); //Todo implement in Pokemon Class
+        int attackStat = getAttackStat(move,attackingPokemon);
+        int movePower = move.getPower();
+        int enemyDefense = getDefenseStat(move, defendingPokemon);
         double effectiveness = 1;
         int randomNumber = ThreadLocalRandom.current().nextInt(85, 101);
         double STAB = 1; // Same-Type attack bonus
+
+//        if(paralyzed){
+//            return 0;
+//        }
 
         //Todo implement stab
         if(attackingPokemon.get_typeTwo().equals(move.getType()) || attackingPokemon.get_typeOne().equals(move.getType())){
