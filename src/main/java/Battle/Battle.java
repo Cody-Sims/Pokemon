@@ -96,7 +96,7 @@ public class Battle {
         bagButton.setLayoutY(SCREEN_HEIGHT - (SCREEN_HEIGHT / 5) - 25);
         bagButton.setMinSize(SCREEN_WIDTH / 4 - 5,SCREEN_HEIGHT / 10 - 5);
 
-        Button pokemonButton = new Button("src/main/pokemon/Pokemon");
+        Button pokemonButton = new Button("Pokemon");
         pokemonButton.setLayoutX(SCREEN_WIDTH / 2 + 5);
         pokemonButton.setLayoutY(SCREEN_HEIGHT - (SCREEN_HEIGHT / 10) - 30);
         pokemonButton.setMinSize(SCREEN_WIDTH / 4 - 5,SCREEN_HEIGHT / 10 - 5);
