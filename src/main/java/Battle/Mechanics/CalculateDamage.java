@@ -23,7 +23,6 @@ public class CalculateDamage {
 //            return 0;
 //        }
 
-        //Todo implement stab
         if(attackingPokemon.get_typeTwo().equals(move.getType()) || attackingPokemon.get_typeOne().equals(move.getType())){
             STAB = 1.5;
         }
@@ -38,7 +37,6 @@ public class CalculateDamage {
         return damage;
     }
 
-    //Todo
     //Chooses a random move from the enemies moves and calculates damage to player
     public static Move enemyAttack(Pokemon enemy) {
         int randomNumber = ThreadLocalRandom.current().nextInt(0, 5);

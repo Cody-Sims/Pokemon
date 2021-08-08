@@ -12,7 +12,7 @@ public class TypeHandling {
     public static Map<String, List<String>> initMap() {
         Map<String, List<String>> map = new HashMap<>();
         map.put("Normal", new ArrayList<String>(){});
-        map.put("Fire", new ArrayList<String>(){{add("Fire"); add("Water"); add("Rock"); add("Dragon");}});
+        map.put("Fire", new ArrayList<String>(){{add("Water"); add("Rock");}});
 
         return Collections.unmodifiableMap(map);
     }

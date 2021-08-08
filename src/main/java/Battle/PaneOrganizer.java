@@ -11,7 +11,6 @@ import static Battle.BattleConstants.SCREEN_HEIGHT;
 import static Battle.BattleConstants.SCREEN_WIDTH;
 
 // The entire BattleSystem is built on it
-// Todo: Figure out how to scale this with an open world, potentially deleting this pane?
 // Creates the main pane and allows other parts of the program to access it with a getter method
 public class PaneOrganizer {
     private BorderPane _root;
@@ -21,7 +20,7 @@ public class PaneOrganizer {
     public PaneOrganizer(){
         _root = new BorderPane();
         _root.setPrefSize(SCREEN_WIDTH, SCREEN_HEIGHT);
-        new Battle(_root, new Pokemon(74), new Pokemon(24));
+        new Battle(_root, new Pokemon(4), new Pokemon(24));
         setupQuitButton();
     }
 

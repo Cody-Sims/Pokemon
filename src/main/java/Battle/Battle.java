@@ -29,6 +29,7 @@ public class Battle {
     //todo create the screens for these buttons
     //Todo: Create an bagScreen
     FightScreen _fightScreen;
+    BagScreen _bagScreen;
     PokemonScreen _pokemonScreen = new PokemonScreen();
 
     public Battle(Pane root, Pokemon playerPokemon, Pokemon enemyPokemon){
@@ -95,6 +96,7 @@ public class Battle {
         bagButton.setLayoutX(SCREEN_WIDTH / 2 + SCREEN_WIDTH / 4);
         bagButton.setLayoutY(SCREEN_HEIGHT - (SCREEN_HEIGHT / 5) - 25);
         bagButton.setMinSize(SCREEN_WIDTH / 4 - 5,SCREEN_HEIGHT / 10 - 5);
+        bagButton.setOnAction(e -> _bagScreen.showBagScreen());
 
         Button pokemonButton = new Button("Pokemon");
         pokemonButton.setLayoutX(SCREEN_WIDTH / 2 + 5);

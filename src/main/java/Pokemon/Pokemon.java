@@ -1,5 +1,7 @@
 package Pokemon;
 
+import MoveCatalog.Effects.Effect;
+import MoveCatalog.Effects.SharplyLowersSpeed;
 import MoveCatalog.Move;
 import javafx.scene.image.Image;
 
@@ -39,12 +41,13 @@ public class Pokemon {
 
     // cur Statistics
     private int _total;
-    private int _hp;
+    private static int _hp;
     private int _attack;
     private int _defense;
     private int _specialAttack;
     private int _specialDefense;
     private int _speed;
+    private int _evasiveness;
 
     // Statistics in Battle
     private int _battleAttack;
@@ -52,6 +55,7 @@ public class Pokemon {
     private int _battleSpecialAttack;
     private int _battleSpecialDefense;
     private int _battleSpeed;
+    private int _battleEvasiveness;
 
     //Battle Stages
     private int _attackStage = 0;
@@ -59,10 +63,16 @@ public class Pokemon {
     private int _specialAttackStage = 0;
     private int _specialDefenseStage = 0;
     private int _speedStage = 0;
+    private int _evasivenessStage = 0;
 
     //StatusEffects
-    private boolean _poisoned;
-    private boolean _paralyzed;
+    boolean _poisoned = false;
+    boolean _paralyzed = false;
+    boolean _burned = false;
+    boolean _frozen = false;
+    boolean _sleep = false;
+    boolean _confused = false;
+    boolean _flinch = false;
 
     // Ivs
     private int _hpIv = 0;
@@ -85,6 +95,10 @@ public class Pokemon {
     private int _currentHP;
     private int _level;
 
+    //Statuses
+
+
+
     // Image Handling
     private Image _imgFront;
     private Image _imgBack;
@@ -94,7 +108,6 @@ public class Pokemon {
 
     // Constructs the pokemon based on it's pokedex number
     //Todo create a random Pokemon initializer class with parameters
-    //Todo instantiate pokemon stats
     public Pokemon(int pokedexNumber) {
         _pokedexNumber = pokedexNumber;
         _level = 50;
@@ -123,10 +136,11 @@ public class Pokemon {
         _specialAttackStage = 0;
         _specialDefenseStage = 0;
         _speedStage = 0;
+        _evasivenessStage = 0;
     }
 
 
-    //Todo calculate stats and check for new moves
+    //Todo check for new moves
 
     public void calculateStats(){
         _hp = (int)(Math.floor(0.01 * (2 * _baseHp + _baseHp + _hpIv + Math.floor(0.25 * _hpEv)) * _level) + _level + 10);
@@ -135,10 +149,56 @@ public class Pokemon {
         _specialAttack = (int)(Math.floor(0.01 * (2 * _baseSpecialAttack + _specialAttackIv + Math.floor(0.25 * _specialAttackEv)) * _level) + 5);
         _specialDefense = (int)(Math.floor(0.01 * (2 * _baseSpecialAttack + _specialDefenseIv + Math.floor(0.25 * _specialDefenseEv)) * _level) + 5);
         _speed= (int)(Math.floor(0.01 * (2 * _baseSpeed + _speedIv + Math.floor(0.25 * _speedEv)) * _level) + 5);
+        _evasiveness = 0;
     }
 
+
     public void calculateBattleStats(){
-        _battleAttack = _attack * _attackStage;
+
+        if(_attackStage >= 0){
+            _battleAttack = _attack * ((2+_attackStage) / 2);
+        }
+        else{
+            _battleAttack = _attack * (2 / (2 + _attackStage));
+        }
+        if(_defenseStage >= 0){
+            _battleDefense = _defense * ((2+_defenseStage) / 2);
+        }
+        else{
+            _battleDefense = _defense * (2 / (2 + _defenseStage));
+        }
+        if(_specialAttackStage >= 0){
+            _battleSpecialAttack = _specialAttack * ((2+_specialAttackStage) / 2);
+        }
+        else{
+            _battleSpecialAttack = _specialAttack * (2 / (2 + _specialAttackStage));
+        }
+        if(_specialDefenseStage >= 0){
+            _battleSpecialDefense = _specialDefense * ((2+_specialDefenseStage) / 2);
+        }
+        else{
+            _battleSpecialDefense = _specialDefense * (2 / (2 + _specialDefenseStage));
+        }
+        if(_speedStage >= 0){
+            _battleSpeed = _speed * ((2+_speedStage) / 2);
+        }
+        else{
+            _battleSpeed = _speed * (2 / (2 + _speedStage));
+        }
+        if(_evasivenessStage >= 0){
+            _battleEvasiveness = _evasiveness * ((2+_evasivenessStage) / 2);
+        }
+        else{
+            _battleEvasiveness = _evasiveness * (2 / (2 + _evasivenessStage));
+        }
+        if(_confused){
+            // confusion damage is typeless with base damage of 40, calculated like normal, no STAB, no critcals, etc.
+            _hp = _hp - ((2 * _level + 10)%250) % (40%_defense) + 2;
+        }
+        if(_burned){
+            _battleAttack *= 1/2;
+        }
+
         _battleDefense = _defense * _defenseStage;
         _battleSpecialAttack = _specialAttack * _specialAttackStage;
         _battleSpecialDefense= _specialDefense * _specialDefenseStage;
@@ -174,6 +234,7 @@ public class Pokemon {
             if (learnableMove[0] != null && Double.parseDouble(learnableMove[0]) < _level) {
                 moves.add(learnableMove[1]);
             }
+
         }
 
         if(moves.size() >= 1){
@@ -230,6 +291,47 @@ public class Pokemon {
     public int getAttackStage(){
         return _attackStage;
     }
+
+    public void setDefenseStage(int stage){
+        _defenseStage = stage;
+    }
+
+    public int getDefenseStage(){
+        return _defenseStage;
+    }
+
+    public void setSpecialAttackStage(int stage){
+        _specialAttackStage = stage;
+    }
+
+    public int getSpecialAttackStage(){
+        return _specialAttackStage;
+    }
+
+    public void setSpecialDefenseStage(int stage){
+        _specialDefenseStage = stage;
+    }
+
+    public int getSpecialDefenseStage(){
+        return _specialDefenseStage;
+    }
+
+    public void setSpeedStage(int stage){
+        _speedStage = stage;
+    }
+
+    public int getSpeedStage(){
+        return _speedStage;
+    }
+
+    public void setEvasivenessStage(int stage){
+        _evasivenessStage = stage;
+    }
+
+    public int getEvasivenessStage(){
+        return _evasivenessStage;
+    }
+
 
     public int getCurrentHP() {
         return _currentHP;

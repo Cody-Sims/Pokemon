@@ -11,14 +11,15 @@ import java.util.Map;
 public class MoveConstants {
     public static final String[][] data = getData();
     public static String[][] getData(){
-        String[][] data = new String[800][8];
+        String[][] data = new String[797][9];
         try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/PokemonStats/MoveList.csv"))) {
             for(int i = 0; i < data.length; i++) {
                 String row = br.readLine();
-                String[] stats = row.split("[,]");
-                System.out.println(Arrays.toString(stats));
+                String[] stats = row.split(",");
+              //  System.out.println(Arrays.toString(stats));
                 for(int j = 0; j < data[i].length; j++){
                     data[i][j] = stats[j].strip();
+                  //System.out.println("Column: " + j + " " + data[i][j] +", ");
                 }
             }
         }
@@ -68,8 +69,18 @@ public class MoveConstants {
     public static Map<String, String> getMoveDescription(){
         Map<String, String> map = new HashMap<>();
         for(int row = 0;  row < data.length; row++){
-            map.put(data[row][0], data[row][6]);
+            map.put(data[row][0], data[row][7]);
         }
+        return Collections.unmodifiableMap(map);
+    }
+
+    public static final Map<String, String> MOVE_PROBABILITY = getMoveProbability();
+    public static Map<String, String> getMoveProbability(){
+        Map<String, String> map = new HashMap<>();
+        for(int row = 0;  row < data.length; row++){
+            map.put(data[row][0], data[row][8]);
+        }
+
         return Collections.unmodifiableMap(map);
     }
 }

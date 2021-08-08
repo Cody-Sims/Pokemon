@@ -7,7 +7,6 @@ import Pokemon.Pokemon;
 import static MoveCatalog.Effects.getEffect.getEffect;
 import static MoveCatalog.MoveConstants.*;
 
-//Todo create a move class, contains type, damage, effect, etc
 public class Move {
     // Potentially parse a csv file for the information
     // Potentially split each move into Types and create a HashMap for each Typing
@@ -18,6 +17,7 @@ public class Move {
 
     int _power;
     int _accuracy;
+    int _probability;
 
     Effect _effect;
 
@@ -52,6 +52,7 @@ public class Move {
 
         _effect = getEffect(_description);
 
+
     }
 
 
@@ -59,12 +60,12 @@ public class Move {
         return _name;
     }
 
-    public String getCategory(){
-        return _category;
-    }
-
     public String getType() {
         return _type;
+    }
+
+    public String getCategory(){
+        return _category;
     }
 
     public int getPower() {
@@ -78,4 +79,6 @@ public class Move {
     public void calculateEffect(){
         _effect.updateStat(_pokemon);
     }
+
+    public int getProbability(){ return _probability;}
 }

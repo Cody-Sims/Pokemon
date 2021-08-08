@@ -13,8 +13,6 @@ import static Battle.BattleConstants.SCREEN_WIDTH;
 import static Battle.Mechanics.CalculateDamage.calculateDamage;
 import static Battle.Mechanics.CalculateDamage.enemyAttack;
 
-//Todo create a catalog of moves, types, and damage calculation
-//Todo create a type system
 
 public class FightScreen {
     Pane _root;
@@ -29,9 +27,6 @@ public class FightScreen {
     int _playerCurrentHP;
     int _enemyCurrentHP;
 
-    //Todo replace with playerPokemon's moves
-    //Todo create Move class
-    //Todo add actions to move buttons
     Move _move1;
     Move _move2;
     Move _move3;
@@ -72,7 +67,6 @@ public class FightScreen {
         buttonWindow.setStrokeWidth(8);
         buttonWindow.setFill(Color.rgb(212, 255, 223));
 
-        //Todo Buttons should represent moves not just text
         Button move1Button = new Button(_move1.getName());
         move1Button.setLayoutX(SCREEN_WIDTH / 2 + 5);
         move1Button.setLayoutY(SCREEN_HEIGHT - (SCREEN_HEIGHT / 5) - 25);
@@ -110,8 +104,7 @@ public class FightScreen {
 
     // Occurs when a button is clicked. The input is a move that will be used to calculate the damage given
     // to the receiving pokemon
-    //Todo Speed Based attacking
-    // Faint detection
+    // Todo Faint detection
     public void attack(Move move){
         // Faster Pokemon Moves First
         if(_playerPokemon.getSpeed() >= _enemyPokemon.getSpeed()){
