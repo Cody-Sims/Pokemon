@@ -10,7 +10,6 @@ public class getEffect {
         if(moveDescription.equals("Sharply raises user's Special Defense.")){return new SharplyRaisesSpecialDefense();}
         if(moveDescription.equals("Sharply raises user's Speed.")){return new SharplyRaisesSpeed();}
         if(moveDescription.equals("Sharply raises user's Evasiveness.")){return new SharplyRaisesEvasiveness();}
-        if(moveDescription.equals("Sharply raises user's Accuracy.")){return new SharplyRaisesAccuracy();}
 
         // Raises
         if(moveDescription.equals("Raises user's Attack.")){return new RaisesAttack();}
@@ -19,7 +18,6 @@ public class getEffect {
         if(moveDescription.equals("Raises user's Special Defense.")){return new RaisesSpecialDefense();}
         if(moveDescription.equals("Raises user's Speed.")){return new RaisesSpeed();}
         if(moveDescription.equals("Raises user's Evasiveness.")){return new RaisesEvasiveness();}
-        if(moveDescription.equals("Raises user's Accuracy.")){return new RaisesAccuracy();}
 
         return null;
     }
@@ -32,7 +30,6 @@ public class getEffect {
         if(moveDescription.equals("Sharply lowers opponent's Special Defense.")){return new SharplyLowersSpecialDefense();}
         if(moveDescription.equals("Sharply lowers opponent's Speed.")){return new SharplyLowersSpeed();}
         if(moveDescription.equals("Sharply lowers opponent's Evasiveness.")){return new SharplyLowersEvasiveness();}
-        if(moveDescription.equals("Sharply lowers user's Accuracy.")){return new SharplyLowersAccuracy();}
 
         // Lowers
         if(moveDescription.equals("Lowers opponent's Attack.")){return new LowersAttack();}
@@ -41,7 +38,6 @@ public class getEffect {
         if(moveDescription.equals("Lowers opponent's Special Defense.")){return new LowersSpecialDefense();}
         if(moveDescription.equals("Lowers opponent's Speed.")){return new LowersSpeed();}
         if(moveDescription.equals("Lowers opponent's Evasiveness.")){return new LowersEvasiveness();}
-        if(moveDescription.equals("Lowers opponent's Accuracy.")){return new LowersAccuracy();}
         return null;
     }
 }
