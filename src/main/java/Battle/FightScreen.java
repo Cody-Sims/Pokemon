@@ -107,7 +107,7 @@ public class FightScreen {
     // Todo Faint detection
     public void attack(Move move){
         // Faster Pokemon Moves First
-        if(_playerPokemon.getSpeed() >= _enemyPokemon.getSpeed()){
+        if(_playerPokemon.getBattleSpeed() >= _enemyPokemon.getBattleSpeed()){
             _enemyCurrentHP -= calculateDamage(move, _playerPokemon, _enemyPokemon);
             _playerCurrentHP -= calculateDamage(enemyAttack(_enemyPokemon), _enemyPokemon, _playerPokemon);
         }
@@ -116,11 +116,7 @@ public class FightScreen {
             _enemyCurrentHP -= calculateDamage(move, _playerPokemon, _enemyPokemon);
         }
 
-
-
-        System.out.println(_enemyCurrentHP);
-        System.out.println(_playerCurrentHP);
-
+        // Update HP
         _enemyPokemon.set_currentHP(_enemyCurrentHP);
         _playerPokemon.set_currentHP(_playerCurrentHP);
 

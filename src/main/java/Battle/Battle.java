@@ -62,7 +62,6 @@ public class Battle {
 
     // Updates the scene with new information after a turn.
     public void updateScene(){
-        System.out.println(_playerPokemon.getCurrentHP());
         _battlePane = new Pane();
         addBottomPane();
         addPlayerPane(_playerPokemon.getCurrentHP());
@@ -135,7 +134,7 @@ public class Battle {
     private void addPlayerPokemon(){
        ImageView playerView = new ImageView(_playerPokemon.getImageBack());
        playerView.setX(10);
-       System.out.println(_playerPokemon.getImageBackHeight());
+
        int yOffset = _playerPokemon.getImageBackHeight() - 8;
        playerView.setY(SCREEN_HEIGHT - SCREEN_HEIGHT / 4 - yOffset);
        _root.getChildren().add(playerView);

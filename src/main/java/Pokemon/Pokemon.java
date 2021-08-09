@@ -111,7 +111,6 @@ public class Pokemon {
         _level = 50;
         createPokemon();
         _currentHP = _hp;
-        printStats();
     }
 
     // Instantiates the pokemon
@@ -122,8 +121,7 @@ public class Pokemon {
         calculateStats();
         findLearnableMoves();
         setRandomMoves();
-
-
+        calculateBattleStats();
     }
 
     //Resets stuff to normal after battle
@@ -135,6 +133,14 @@ public class Pokemon {
         _specialDefenseStage = 0;
         _speedStage = 0;
         _evasivenessStage = 0;
+
+        // Battle Stats
+        _battleAttack = _attack;
+        _battleDefense = _defense;
+        _battleSpecialAttack =_specialAttack;
+        _battleSpecialDefense = _specialDefense;
+        _battleSpeed = _speed;
+        calculateBattleStats();
     }
 
 
@@ -196,11 +202,6 @@ public class Pokemon {
         if(_burned){
             _battleAttack *= 1/2;
         }
-
-        _battleDefense = _defense * _defenseStage;
-        _battleSpecialAttack = _specialAttack * _specialAttackStage;
-        _battleSpecialDefense= _specialDefense * _specialDefenseStage;
-        _battleSpeed = _speed * _speedStage;
     }
 
     public void findLearnableMoves(){
@@ -255,6 +256,7 @@ public class Pokemon {
                 true, false);
         _imgFrontHeight = (int)_imgFront.getHeight();
     }
+
     private void setImageBack(){
         _imgBack = new Image("PokemonSprites/Back/" + _pokedexNumber +".png", POKEMON_WIDTH, POKEMON_HEIGHT,
                 true, false);
@@ -349,18 +351,38 @@ public class Pokemon {
         return _typeTwo;
     }
 
-    public int getAttack(){ return _attack;}
-
-    public int getDefense(){ return _defense;}
-
-    public int getSpecialAttack(){ return _attack;}
-
-    public int getSpecialDefense(){ return _specialDefense;}
-
-    public int getSpeed(){return _speed;}
+//    public int getAttack(){ return _attack;}
+//
+//    public int getDefense(){ return _defense;}
+//
+//    public int getSpecialAttack(){ return _attack;}
+//
+//    public int getSpecialDefense(){ return _specialDefense;}
+//
+//    public int getSpeed(){return _speed;}
 
     public int getLevel() {
         return _level;
+    }
+
+    public int getBattleAttack() {
+        return _battleAttack;
+    }
+
+    public int getBattleDefense() {
+        return _battleDefense;
+    }
+
+    public int getBattleSpecialDefense() {
+        return _battleSpecialDefense;
+    }
+
+    public int getBattleSpecialAttack() {
+        return _battleSpecialAttack;
+    }
+
+    public int getBattleSpeed() {
+        return _battleSpeed;
     }
 
     public Move getMoveOne(){

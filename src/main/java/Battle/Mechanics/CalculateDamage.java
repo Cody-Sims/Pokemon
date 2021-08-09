@@ -29,6 +29,10 @@ public class CalculateDamage {
             return 0;
         }
 
+        //Calculate battle stats
+        attackingPokemon.calculateBattleStats();
+        defendingPokemon.calculateBattleStats();
+
 
         // Calculate initial variables needed for damage calculation
         int level = attackingPokemon.getLevel();
@@ -72,18 +76,18 @@ public class CalculateDamage {
     // Calculates the attack stat based on the type of move
     public static int getAttackStat(Move move, Pokemon pokemon) {
         if (move.getCategory().equals("Special")) {
-            return pokemon.getSpecialAttack();
+            return pokemon.getBattleSpecialAttack();
         } else {
-            return pokemon.getAttack();
+            return pokemon.getBattleAttack();
         }
     }
 
     // Calculates the defense stat based on the type of move
     public static int getDefenseStat(Move move, Pokemon pokemon) {
         if (move.getCategory().equals("Special")) {
-            return pokemon.getSpecialDefense();
+            return pokemon.getBattleSpecialDefense();
         } else {
-            return pokemon.getDefense();
+            return pokemon.getBattleDefense();
         }
     }
 }

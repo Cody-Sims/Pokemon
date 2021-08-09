@@ -32,8 +32,6 @@ public class Move {
     }
 
     private void setInfo(){
-        System.out.println(_name + " : Power" + MOVE_POWER.get(_name));
-        System.out.println();
         _category = MOVE_CATEGORY.get(_name);
         _type = MOVE_TYPES.get(_name);
         _description = MOVE_DESCRIPTION.get(_name);
@@ -43,7 +41,6 @@ public class Move {
         }
         else{
             _power = 0;
-            //Todo set status effect
         }
 
         if(!MOVE_ACCURACY.get(_name).equals("")){
