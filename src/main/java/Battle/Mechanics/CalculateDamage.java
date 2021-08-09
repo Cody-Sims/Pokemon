@@ -1,5 +1,6 @@
 package Battle.Mechanics;
 
+import MoveCatalog.Effects.PlayerEffect;
 import MoveCatalog.Move;
 import MoveCatalog.StatusEffects.Paralysis;
 import Pokemon.Pokemon;
@@ -11,6 +12,25 @@ import java.util.concurrent.ThreadLocalRandom;
 //Todo
 public class CalculateDamage {
     public static double calculateDamage(Move move, Pokemon attackingPokemon, Pokemon defendingPokemon) {
+
+        // If the move is an effect that raises the players stat, return 0 and update stats
+        if(move.getEffect() != null){
+            move.getEffect().updateStat(attackingPokemon);
+            attackingPokemon.calculateBattleStats();
+            return 0;
+        }
+
+        // If the move is an effect that decreases the opponents stat, return 0 and lower the stat of the opponent
+        if(move.getOpponentEffect() != null){
+            System.out.println(defendingPokemon.getSpeedStage());
+            move.getOpponentEffect().updateStat(defendingPokemon);
+            defendingPokemon.calculateBattleStats();
+            System.out.println(defendingPokemon.getSpeedStage());
+            return 0;
+        }
+
+
+        // Calculate initial variables needed for damage calculation
         int level = attackingPokemon.getLevel();
         int attackStat = getAttackStat(move,attackingPokemon);
         int movePower = move.getPower();
@@ -19,21 +39,14 @@ public class CalculateDamage {
         int randomNumber = ThreadLocalRandom.current().nextInt(85, 101);
         double STAB = 1; // Same-Type attack bonus
 
-//        if(paralyzed){
-//            return 0;
-//        }
-
         if(attackingPokemon.get_typeTwo().equals(move.getType()) || attackingPokemon.get_typeOne().equals(move.getType())){
             STAB = 1.5;
         }
 
-        System.out.println();
-
-
+        // Damage Calculation
         int damage = (int) (((((2 * level / 5 + 2) * attackStat * movePower / enemyDefense) / 50) + 2)
                 * STAB * effectiveness * randomNumber / 100);
 
-        System.out.println("damage: " +damage);
         return damage;
     }
 

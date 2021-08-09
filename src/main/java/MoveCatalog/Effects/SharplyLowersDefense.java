@@ -2,7 +2,7 @@ package MoveCatalog.Effects;
 
 import Pokemon.Pokemon;
 
-public class SharplyLowersDefense implements Effect{
+public class SharplyLowersDefense implements EnemyEffect{
     public void updateStat(Pokemon pokemon){
         pokemon.setDefenseStage(pokemon.getDefenseStage() - 2);
         if (pokemon.getDefenseStage() > 6) {

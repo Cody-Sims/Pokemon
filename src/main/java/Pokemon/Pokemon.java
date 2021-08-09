@@ -1,7 +1,5 @@
 package Pokemon;
 
-import MoveCatalog.Effects.Effect;
-import MoveCatalog.Effects.SharplyLowersSpeed;
 import MoveCatalog.Move;
 import javafx.scene.image.Image;
 
@@ -159,37 +157,37 @@ public class Pokemon {
             _battleAttack = _attack * ((2+_attackStage) / 2);
         }
         else{
-            _battleAttack = _attack * (2 / (2 + _attackStage));
+            _battleAttack = _attack * (2 / (2 + Math.abs(_attackStage)));
         }
         if(_defenseStage >= 0){
             _battleDefense = _defense * ((2+_defenseStage) / 2);
         }
         else{
-            _battleDefense = _defense * (2 / (2 + _defenseStage));
+            _battleDefense = _defense * (2 / (2 + Math.abs(_defenseStage)));
         }
         if(_specialAttackStage >= 0){
             _battleSpecialAttack = _specialAttack * ((2+_specialAttackStage) / 2);
         }
         else{
-            _battleSpecialAttack = _specialAttack * (2 / (2 + _specialAttackStage));
+            _battleSpecialAttack = _specialAttack * (2 / (2 + Math.abs(_specialAttackStage)));
         }
         if(_specialDefenseStage >= 0){
             _battleSpecialDefense = _specialDefense * ((2+_specialDefenseStage) / 2);
         }
         else{
-            _battleSpecialDefense = _specialDefense * (2 / (2 + _specialDefenseStage));
+            _battleSpecialDefense = _specialDefense * (2 / (2 + Math.abs(_specialDefenseStage)));
         }
         if(_speedStage >= 0){
             _battleSpeed = _speed * ((2+_speedStage) / 2);
         }
         else{
-            _battleSpeed = _speed * (2 / (2 + _speedStage));
+            _battleSpeed = _speed * (2 / (2 + Math.abs(_speedStage)));
         }
         if(_evasivenessStage >= 0){
             _battleEvasiveness = _evasiveness * ((2+_evasivenessStage) / 2);
         }
         else{
-            _battleEvasiveness = _evasiveness * (2 / (2 + _evasivenessStage));
+            _battleEvasiveness = _evasiveness * (2 / (2 + Math.abs(_evasivenessStage)));
         }
         if(_confused){
             // confusion damage is typeless with base damage of 40, calculated like normal, no STAB, no critcals, etc.

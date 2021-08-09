@@ -2,7 +2,7 @@ package MoveCatalog.Effects;
 
 import Pokemon.Pokemon;
 
-public class SharplyRaisesSpecialAttack implements Effect{
+public class SharplyRaisesSpecialAttack implements PlayerEffect{
     public void updateStat(Pokemon pokemon){
         pokemon.setSpecialAttackStage(pokemon.getSpecialAttackStage() + 2);
         if (pokemon.getSpecialAttackStage() > 6) {

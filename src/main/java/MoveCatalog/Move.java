@@ -1,10 +1,11 @@
 package MoveCatalog;
 
-import MoveCatalog.Effects.Effect;
+import MoveCatalog.Effects.EnemyEffect;
+import MoveCatalog.Effects.PlayerEffect;
 import Pokemon.Pokemon;
 
 
-import static MoveCatalog.Effects.getEffect.getEffect;
+import static MoveCatalog.Effects.getEffect.*;
 import static MoveCatalog.MoveConstants.*;
 
 public class Move {
@@ -19,7 +20,8 @@ public class Move {
     int _accuracy;
     int _probability;
 
-    Effect _effect;
+    PlayerEffect _playerEffect;
+    EnemyEffect _enemyEffect;
 
     Pokemon _pokemon;
 
@@ -50,14 +52,20 @@ public class Move {
             _accuracy = 100;
         }
 
-        _effect = getEffect(_description);
-
-
+        _playerEffect = getPlayerEffect(_description);
+        _enemyEffect = getEnemyEffect(_description);
     }
-
 
     public String getName(){
         return _name;
+    }
+
+    public PlayerEffect getEffect(){
+        return _playerEffect;
+    }
+
+    public EnemyEffect getOpponentEffect() {
+        return _enemyEffect;
     }
 
     public String getType() {
@@ -76,9 +84,6 @@ public class Move {
         return _accuracy;
     }
 
-    public void calculateEffect(){
-        _effect.updateStat(_pokemon);
-    }
 
     public int getProbability(){ return _probability;}
 }
