@@ -46,6 +46,7 @@ public class Pokemon {
     private int _specialDefense;
     private int _speed;
     private int _evasiveness;
+    private int _accuracy;
 
     // Statistics in Battle
     private int _battleAttack;
@@ -54,6 +55,7 @@ public class Pokemon {
     private int _battleSpecialDefense;
     private int _battleSpeed;
     private int _battleEvasiveness;
+    private int _battleAccuracy;
 
     //Battle Stages
     private int _attackStage = 0;
@@ -62,6 +64,7 @@ public class Pokemon {
     private int _specialDefenseStage = 0;
     private int _speedStage = 0;
     private int _evasivenessStage = 0;
+    private int _accuracyStage = 0;
 
     //StatusEffects
     boolean _poisoned = false;
@@ -135,6 +138,7 @@ public class Pokemon {
         _specialDefenseStage = 0;
         _speedStage = 0;
         _evasivenessStage = 0;
+        _accuracyStage = 0;
     }
 
 
@@ -148,6 +152,7 @@ public class Pokemon {
         _specialDefense = (int)(Math.floor(0.01 * (2 * _baseSpecialAttack + _specialDefenseIv + Math.floor(0.25 * _specialDefenseEv)) * _level) + 5);
         _speed= (int)(Math.floor(0.01 * (2 * _baseSpeed + _speedIv + Math.floor(0.25 * _speedEv)) * _level) + 5);
         _evasiveness = 0;
+        _accuracy = 0;
     }
 
 
@@ -189,8 +194,14 @@ public class Pokemon {
         else{
             _battleEvasiveness = _evasiveness * (2 / (2 + Math.abs(_evasivenessStage)));
         }
+        if(_accuracyStage >= 0){
+            _battleAccuracy = _accuracy * ((2+_accuracyStage) / 2);
+        }
+        else{
+            _battleAccuracy = _accuracy * (2 / (2 + Math.abs(_accuracyStage)));
+        }
         if(_confused){
-            // confusion damage is typeless with base damage of 40, calculated like normal, no STAB, no critcals, etc.
+            // confusion damage is typeless with base damage of 40, calculated like normal, no STAB, no criticals, etc.
             _hp = _hp - ((2 * _level + 10)%250) % (40%_defense) + 2;
         }
         if(_burned){
@@ -328,6 +339,14 @@ public class Pokemon {
 
     public int getEvasivenessStage(){
         return _evasivenessStage;
+    }
+
+    public void setAccuracyStage(int stage){
+        _accuracyStage = stage;
+    }
+
+    public int getAccuracyStage(){
+        return _accuracyStage;
     }
 
 
