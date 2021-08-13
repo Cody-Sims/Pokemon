@@ -2,10 +2,12 @@ package Battle;
 
 import MoveCatalog.Move;
 import Pokemon.Pokemon;
+import Battle.TransitionScreen.*;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+
 
 
 import static Battle.BattleConstants.SCREEN_HEIGHT;
@@ -121,7 +123,9 @@ public class FightScreen {
         _playerPokemon.set_currentHP(_playerCurrentHP);
 
         hideScreen(); // Hides fight screen but doesn't remove it for faster performance
-        _curBattle.updateScene(); //Updates Pokemons' current health and returns back to defaultbattle screen
+        new TransitionScreen(_root, _playerPokemon, _enemyPokemon, _curBattle, move);
+        //_curBattle.updateScene(); //Updates Pokemons' current health and returns back to defaultbattle screen
+
 
         //TODO Create a transition screen. Something like playerPokemon attacked using moveName!
         // showTransitionScreen()

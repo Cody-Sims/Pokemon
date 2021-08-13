@@ -10,4 +10,8 @@ public class LowersAttack implements EnemyEffect {
             pokemon.setAttackStage(6);
         }
     }
+    public String getText(Pokemon player, Pokemon enemy, Move move){
+        return player.getName() + " used " + move.getName() + "and lowered " + enemy.getName() + "'s attack!";
+    }
+
 }

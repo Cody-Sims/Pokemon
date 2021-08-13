@@ -196,7 +196,7 @@ public class Pokemon {
             _battleEvasiveness = _evasiveness * (2 / (2 + Math.abs(_evasivenessStage)));
         }
         if(_confused){
-            // confusion damage is typeless with base damage of 40, calculated like normal, no STAB, no critcals, etc.
+            // confusion damage is typeless with base damage of 40, calculated like normal, no STAB, no criticals, etc.
             _hp = _hp - ((2 * _level + 10)%250) % (40%_defense) + 2;
         }
         if(_burned){
