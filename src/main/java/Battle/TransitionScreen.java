@@ -42,7 +42,7 @@ public class TransitionScreen {
         transition.setStroke(Color.GRAY);
         transition.setStrokeWidth(8);
         transition.setFill(Color.rgb(255, 175, 175));
-        transition.setOnMouseClicked(new EventHandler<MouseEvent>(){
+        _transitionScreenPane.setOnMouseClicked(new EventHandler<MouseEvent>(){
             @Override
             public void handle(MouseEvent event){
                 removeScreen();
