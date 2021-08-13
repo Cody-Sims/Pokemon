@@ -161,47 +161,47 @@ public class Pokemon {
     public void calculateBattleStats(){
 
         if(_attackStage >= 0){
-            _battleAttack = _attack * ((2+_attackStage) / 2);
+            _battleAttack = (int)(_attack * ((2.0+_attackStage) / 2));
         }
         else{
-            _battleAttack = _attack * (2 / (2 + Math.abs(_attackStage)));
+            _battleAttack = (int)(_attack * (2 / (2.0 + Math.abs(_attackStage))));
         }
         if(_defenseStage >= 0){
-            _battleDefense = _defense * ((2+_defenseStage) / 2);
+            _battleDefense = (int)(_defense * ((2.0+_defenseStage) / 2));
         }
         else{
-            _battleDefense = _defense * (2 / (2 + Math.abs(_defenseStage)));
+            _battleDefense = (int)(_defense * (2.0 / (2 + Math.abs(_defenseStage))));
         }
         if(_specialAttackStage >= 0){
-            _battleSpecialAttack = _specialAttack * ((2+_specialAttackStage) / 2);
+            _battleSpecialAttack = (int)(_specialAttack * ((2+_specialAttackStage) / 2.0));
         }
         else{
-            _battleSpecialAttack = _specialAttack * (2 / (2 + Math.abs(_specialAttackStage)));
+            _battleSpecialAttack = (int)(_specialAttack * (2 / (2.0 + Math.abs(_specialAttackStage))));
         }
         if(_specialDefenseStage >= 0){
-            _battleSpecialDefense = _specialDefense * ((2+_specialDefenseStage) / 2);
+            _battleSpecialDefense = (int)(_specialDefense * ((2+_specialDefenseStage) / 2.0));
         }
         else{
-            _battleSpecialDefense = _specialDefense * (2 / (2 + Math.abs(_specialDefenseStage)));
+            _battleSpecialDefense = (int)(_specialDefense * (2 / (2.0 + Math.abs(_specialDefenseStage))));
         }
         if(_speedStage >= 0){
-            _battleSpeed = _speed * ((2+_speedStage) / 2);
+            _battleSpeed = (int)(_speed * ((2.0+_speedStage) / 2));
         }
         else{
-            _battleSpeed = _speed * (2 / (2 + Math.abs(_speedStage)));
+            _battleSpeed = (int)(_speed * (2 / (2.0 + Math.abs(_speedStage))));
         }
         if(_evasivenessStage >= 0){
-            _battleEvasiveness = _evasiveness * ((2+_evasivenessStage) / 2);
+            _battleEvasiveness = (int)(_evasiveness * ((2.0+_evasivenessStage) / 2.0));
         }
         else{
-            _battleEvasiveness = _evasiveness * (2 / (2 + Math.abs(_evasivenessStage)));
+            _battleEvasiveness = (int)(_evasiveness * (2 / (2.0 + Math.abs(_evasivenessStage))));
         }
         if(_confused){
             // confusion damage is typeless with base damage of 40, calculated like normal, no STAB, no criticals, etc.
-            _hp = _hp - ((2 * _level + 10)%250) % (40%_defense) + 2;
+            _hp = (int)(_hp - ((2.0 * _level + 10.0)%250.0) % (40.0%_defense) + 2);
         }
         if(_burned){
-            _battleAttack *= 1/2;
+            _battleAttack = (int)(_battleAttack * (1/2.0));
         }
     }
 
