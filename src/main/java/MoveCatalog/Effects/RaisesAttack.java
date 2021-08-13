@@ -1,5 +1,6 @@
 package MoveCatalog.Effects;
 
+import MoveCatalog.Move;
 import Pokemon.Pokemon;
 
 public class RaisesAttack implements PlayerEffect {
@@ -8,5 +9,8 @@ public class RaisesAttack implements PlayerEffect {
         if (pokemon.getAttackStage() > 6) {
             pokemon.setAttackStage(6);
         }
+    }
+    public String getText(Pokemon player, Move move){
+        return player.getName() + " used " + move.getName() + " and raised its attack!";
     }
 }

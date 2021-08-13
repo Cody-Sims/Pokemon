@@ -1,5 +1,6 @@
 package MoveCatalog.Effects;
 
+import MoveCatalog.Move;
 import Pokemon.Pokemon;
 
 public class SharplyLowersAttack implements EnemyEffect{
@@ -8,5 +9,8 @@ public class SharplyLowersAttack implements EnemyEffect{
         if (pokemon.getAttackStage() > 6) {
             pokemon.setAttackStage(6);
         }
+    }
+    public String getText(Pokemon player, Pokemon enemy, Move move){
+        return player.getName() + " used " + move.getName() + "and sharply lowered " + enemy.getName() + "'s attack!";
     }
 }
