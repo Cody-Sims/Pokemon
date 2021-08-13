@@ -15,6 +15,11 @@ import static Battle.Mechanics.TypeEffectiveness.getEffectiveness;
 public class CalculateDamage {
     public static double calculateDamage(Move move, Pokemon attackingPokemon, Pokemon defendingPokemon) {
 
+        // Get a random number, and the move misses if the random number is larger than the accuracy
+        if(Math.random() * 100 > move.getAccuracy()){
+            return 0;
+        }
+
         // If the move is an effect that raises the players stat, return 0 and update stats
         if(move.getEffect() != null){
             move.getEffect().updateStat(attackingPokemon);
