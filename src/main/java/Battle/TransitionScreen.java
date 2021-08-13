@@ -2,6 +2,8 @@ package Battle;
 
 import MoveCatalog.Move;
 import Pokemon.Pokemon;
+import Battle.FightScreen;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -12,6 +14,8 @@ import javafx.scene.text.Text;
 
 import static Battle.BattleConstants.SCREEN_HEIGHT;
 import static Battle.BattleConstants.SCREEN_WIDTH;
+import static Battle.Mechanics.CalculateDamage.calculateDamage;
+import static Battle.Mechanics.CalculateDamage.enemyAttack;
 
 public class TransitionScreen {
     Pane _transitionScreenPane;
@@ -52,14 +56,21 @@ public class TransitionScreen {
         else {
             text = new Text(0, (SCREEN_HEIGHT-(SCREEN_HEIGHT/5) - 30),
                     _playerPokemon.getName() + " used " + _move.getName());
-        }
-
+            }
         text.setX(100);
         text.setY(SCREEN_HEIGHT - (SCREEN_HEIGHT/5));
         text.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, FontPosture.REGULAR, 30));
         text.setWrappingWidth(600);
-        _transitionScreenPane.getChildren().addAll(transition, text);
+        Button exitButton = new Button("Exit");
+        exitButton.setLayoutX(SCREEN_WIDTH / 2 + SCREEN_WIDTH / 3 + 5);
+        exitButton.setLayoutY(SCREEN_HEIGHT - (SCREEN_HEIGHT / 14) - 35);
+        exitButton.setMinSize(SCREEN_WIDTH / 6 - 10,SCREEN_HEIGHT / 12 - 10);
+        exitButton.setOnAction(e -> removeScreen());
+        _transitionScreenPane.getChildren().addAll(transition, text, exitButton);
+
 
 
     }
+    public void removeScreen(){ _root.getChildren().remove(_transitionScreenPane);}
+
 }
