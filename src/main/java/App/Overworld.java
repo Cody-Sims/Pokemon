@@ -1,14 +1,19 @@
 package App;
 
 import Battle.PaneOrganizer;
+import Overworld.Characters.PlayerAnimation;
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.components.CollidableComponent;
+import com.almasb.fxgl.input.UserAction;
 import com.almasb.fxgl.physics.CollisionHandler;
+import com.almasb.fxgl.physics.HitBox;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
+import com.almasb.fxgl.physics.BoundingShape;
+import javafx.scene.shape.Box;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
@@ -45,6 +50,8 @@ public class Overworld extends GameApplication {
                 .type(EntityType.PLAYER)
                 .at(300, 300)
                 .viewWithBBox(new Rectangle(25, 25, Color.BLUE))
+                //.bbox(new Box(42,30) );
+                .with(new PlayerAnimation())
                 .with(new CollidableComponent(true))
                 .buildAndAttach();
 
@@ -81,18 +88,33 @@ public class Overworld extends GameApplication {
 
     @Override
     protected void initInput() {
-        FXGL.onKey(KeyCode.D, () -> {
-            player.translateX(5); // move right 5 pixels
-        });
-        FXGL.onKey(KeyCode.A, () -> {
-            player.translateX(-5); // move left 5 pixels
-        });
-        FXGL.onKey(KeyCode.W, () -> {
-            player.translateY(-5); // move up 5 pixels
-        });
-        FXGL.onKey(KeyCode.S, () -> {
-            player.translateY(5); // move down 5 pixels
-        });
+        FXGL.getInput().addAction(new UserAction("Right") {
+            @Override
+            protected void onAction() {
+                player.getComponent(PlayerAnimation.class).moveRight();
+            }
+        }, KeyCode.D);
+
+        FXGL.getInput().addAction(new UserAction("Left") {
+            @Override
+            protected void onAction() {
+                player.getComponent(PlayerAnimation.class).moveLeft();
+            }
+        }, KeyCode.A);
+
+        FXGL.getInput().addAction(new UserAction("Up") {
+            @Override
+            protected void onAction() {
+                player.getComponent(PlayerAnimation.class).moveUp();
+            }
+        }, KeyCode.W);
+
+        FXGL.getInput().addAction(new UserAction("Down") {
+            @Override
+            protected void onAction() {
+                player.getComponent(PlayerAnimation.class).moveDown();
+            }
+        }, KeyCode.S);
     }
 
     public static void main(String[] args) {
