@@ -1,6 +1,7 @@
 package Pokemon;
 
 import MoveCatalog.Move;
+import TypeCatalog.Type;
 import javafx.scene.image.Image;
 
 import java.io.BufferedReader;
@@ -25,8 +26,8 @@ public class Pokemon {
     Move _moveFour;
 
     //Type
-    private String _typeOne;
-    private String _typeTwo;
+    private Type _typeOne;
+    private Type _typeTwo;
 
     // Base Statistics
     private int _baseTotal;
@@ -266,8 +267,8 @@ public class Pokemon {
     // Used for setting the pokemon's name based on the pokedex number
     private void setBaseStats() {
         _name = POKEMON_NAMES.get(_pokedexNumber);
-        _typeOne = POKEMON_TYPE_ONE.get(_pokedexNumber);
-        _typeTwo = POKEMON_TYPE_TWO.get(_pokedexNumber);
+        _typeOne = new Type(POKEMON_TYPE_ONE.get(_pokedexNumber));
+        _typeTwo = new Type(POKEMON_TYPE_TWO.get(_pokedexNumber));
 
         // Base Stats
         _baseTotal = Integer.parseInt(POKEMON_TOTAL.get(_pokedexNumber));
@@ -343,11 +344,11 @@ public class Pokemon {
         return _hp;
     }
 
-    public String get_typeOne() {
+    public Type getTypeOne() {
         return _typeOne;
     }
 
-    public String get_typeTwo() {
+    public Type getTypeTwo() {
         return _typeTwo;
     }
 

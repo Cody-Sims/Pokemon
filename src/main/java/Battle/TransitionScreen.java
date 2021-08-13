@@ -32,6 +32,8 @@ public class TransitionScreen {
 
     }
     public void createTransitionScreen(){
+
+
         Rectangle transition = new Rectangle(SCREEN_WIDTH, SCREEN_HEIGHT/5);
         transition.setY(SCREEN_HEIGHT - (SCREEN_HEIGHT / 5) - 30);
         transition.setStroke(Color.GRAY);

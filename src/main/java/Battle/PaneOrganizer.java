@@ -20,7 +20,7 @@ public class PaneOrganizer {
     public PaneOrganizer(){
         _root = new BorderPane();
         _root.setPrefSize(SCREEN_WIDTH, SCREEN_HEIGHT);
-        new Battle(_root, new Pokemon(36), new Pokemon(78));
+        new Battle(_root, new Pokemon(94), new Pokemon(21));
         setupQuitButton();
     }
 

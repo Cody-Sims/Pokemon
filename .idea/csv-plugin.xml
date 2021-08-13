@@ -24,6 +24,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/src/main/resources/PokemonStats/Pokemon_Stats.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\src\main\resources\LearnableMoves\Abra.csv">
           <value>
             <Attribute>

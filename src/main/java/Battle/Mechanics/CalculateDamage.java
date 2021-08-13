@@ -43,7 +43,9 @@ public class CalculateDamage {
         int randomNumber = ThreadLocalRandom.current().nextInt(85, 101);
         double STAB = 1; // Same-Type attack bonus
 
-        if(attackingPokemon.get_typeTwo().equals(move.getType()) || attackingPokemon.get_typeOne().equals(move.getType())){
+        // Check if type one or two equals the move's type
+        if(attackingPokemon.getTypeOne().getName().equals(move.getType()) ||
+                attackingPokemon.getTypeTwo().getName().equals(move.getType())){
             STAB = 1.5;
         }
 
