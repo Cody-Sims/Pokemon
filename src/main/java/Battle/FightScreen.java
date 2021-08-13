@@ -119,8 +119,8 @@ public class FightScreen {
         }
 
         // Update HP
-        _enemyPokemon.set_currentHP(_enemyCurrentHP);
-        _playerPokemon.set_currentHP(_playerCurrentHP);
+        _enemyPokemon.setCurrentHP(_enemyCurrentHP);
+        _playerPokemon.setCurrentHP(_playerCurrentHP);
 
         hideScreen(); // Hides fight screen but doesn't remove it for faster performance
         _curBattle.updateScene(); //Updates Pokemons' current health and returns back to defaultbattle screen

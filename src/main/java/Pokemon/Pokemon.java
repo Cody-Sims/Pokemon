@@ -40,7 +40,7 @@ public class Pokemon {
 
     // cur Statistics
     private int _total;
-    private static int _hp;
+    private int _hp;
     private int _attack;
     private int _defense;
     private int _specialAttack;
@@ -281,7 +281,11 @@ public class Pokemon {
 
     }
 
-    public void set_currentHP(int _currentHP) {
+    public int getHP() {
+        return _hp;
+    }
+
+    public void setCurrentHP(int _currentHP) {
         this._currentHP = _currentHP;
     }
 
@@ -333,16 +337,11 @@ public class Pokemon {
         return _evasivenessStage;
     }
 
-
     public int getCurrentHP() {
         return _currentHP;
     }
 
     public String getName(){ return _name; }
-
-    public int getHP() {
-        return _hp;
-    }
 
     public Type getTypeOne() {
         return _typeOne;

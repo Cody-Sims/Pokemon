@@ -48,10 +48,10 @@ public class Battle {
         _enemyPane = new Pane();
 
         //Instantiate Health
-        _playerPokemon.set_currentHP(_playerPokemon.getHP()); //Resets current HP to max HP at start of battle
+        _playerPokemon.setCurrentHP(_playerPokemon.getHP()); //Resets current HP to max HP at start of battle
         _playerHP =_playerPokemon.getHP();
 
-        _enemyPokemon.set_currentHP(_enemyPokemon.getHP()); //Resets current HP to max HP at start of battle
+        _enemyPokemon.setCurrentHP(_enemyPokemon.getHP()); //Resets current HP to max HP at start of battle
         _enemyHP = _enemyPokemon.getCurrentHP();
 
         _root.getChildren().add(_battlePane);
