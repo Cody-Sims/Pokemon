@@ -6,8 +6,7 @@ import Pokemon.Pokemon;
 // Todo
 // Determines whether a move is super effective, not very effective, or normal effectiveness
 public class TypeEffectiveness {
-
-    public double effectiveness(Move move, Pokemon enemy){
+    public static double getEffectiveness(Move move, Pokemon enemy){
         int curEffectiveness = 1; // Default Effectiveness
 
         // Return 0 if enemy is immune to move type
@@ -15,6 +14,24 @@ public class TypeEffectiveness {
                 || enemy.getTypeTwo().getImmunities().contains(move.getType())){
             return 0;
         }
+
+        // Strength Calculation
+        if(enemy.getTypeOne().getStrengths().contains((move.getType()))){
+            curEffectiveness *= 2;
+        }
+        if(enemy.getTypeTwo().getStrengths().contains((move.getType()))){
+            curEffectiveness *= 2;
+        }
+
+        // Immunities Calculation
+        if(enemy.getTypeOne().getWeaknesses().contains((move.getType()))){
+            curEffectiveness *= 0.5;
+        }
+        if(enemy.getTypeTwo().getWeaknesses().contains((move.getType()))){
+            curEffectiveness *= 0.5;
+        }
+
+
         return curEffectiveness;
     }
 }

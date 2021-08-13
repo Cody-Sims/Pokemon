@@ -7,6 +7,8 @@ import Pokemon.Pokemon;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+import static Battle.Mechanics.TypeEffectiveness.getEffectiveness;
+
 // https://www.serebii.net/games/damage.shtml
 // Used to calculate damage
 //Todo
@@ -51,7 +53,7 @@ public class CalculateDamage {
 
         // Damage Calculation
         int damage = (int) (((((2 * level / 5 + 2) * attackStat * movePower / enemyDefense) / 50) + 2)
-                * STAB * effectiveness * randomNumber / 100);
+                * STAB * getEffectiveness(move, defendingPokemon) * randomNumber / 100);
 
         return damage;
     }
