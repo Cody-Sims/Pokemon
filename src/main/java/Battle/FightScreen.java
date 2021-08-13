@@ -123,7 +123,6 @@ public class FightScreen {
         _playerPokemon.set_currentHP(_playerCurrentHP);
 
         hideScreen(); // Hides fight screen but doesn't remove it for faster performance
-
         _curBattle.updateScene(); //Updates Pokemons' current health and returns back to defaultbattle screen
         new TransitionScreen(_root, _playerPokemon, _enemyPokemon, _curBattle, move);
 

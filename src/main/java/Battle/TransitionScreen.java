@@ -2,8 +2,9 @@ package Battle;
 
 import MoveCatalog.Move;
 import Pokemon.Pokemon;
-import Battle.FightScreen;
+import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -14,8 +15,6 @@ import javafx.scene.text.Text;
 
 import static Battle.BattleConstants.SCREEN_HEIGHT;
 import static Battle.BattleConstants.SCREEN_WIDTH;
-import static Battle.Mechanics.CalculateDamage.calculateDamage;
-import static Battle.Mechanics.CalculateDamage.enemyAttack;
 
 public class TransitionScreen {
     Pane _transitionScreenPane;
@@ -43,6 +42,17 @@ public class TransitionScreen {
         transition.setStroke(Color.GRAY);
         transition.setStrokeWidth(8);
         transition.setFill(Color.rgb(255, 175, 175));
+        transition.setOnMouseClicked(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent event){
+                removeScreen();
+            }
+        });
+       /* Button exitButton = new Button("Exit");
+        exitButton.setLayoutX(SCREEN_WIDTH / 2 + SCREEN_WIDTH / 3 + 3);
+        exitButton.setLayoutY(SCREEN_HEIGHT - (SCREEN_HEIGHT / 10) - 35);
+        exitButton.setMinSize(SCREEN_WIDTH / 6 -5  ,SCREEN_HEIGHT/10 -5 );
+        exitButton.setOnAction(e -> removeScreen());*/
 
         Text text;
         if(_move.getEffect() != null){
@@ -61,16 +71,13 @@ public class TransitionScreen {
         text.setY(SCREEN_HEIGHT - (SCREEN_HEIGHT/5));
         text.setFont(Font.font("Comic Sans MS", FontWeight.BOLD, FontPosture.REGULAR, 30));
         text.setWrappingWidth(600);
-        Button exitButton = new Button("Exit");
-        exitButton.setLayoutX(SCREEN_WIDTH / 2 + SCREEN_WIDTH / 3 + 5);
-        exitButton.setLayoutY(SCREEN_HEIGHT - (SCREEN_HEIGHT / 14) - 35);
-        exitButton.setMinSize(SCREEN_WIDTH / 6 - 10,SCREEN_HEIGHT / 12 - 10);
-        exitButton.setOnAction(e -> removeScreen());
-        _transitionScreenPane.getChildren().addAll(transition, text, exitButton);
+
+        _transitionScreenPane.getChildren().addAll( transition, text);
 
 
 
     }
-    public void removeScreen(){ _root.getChildren().remove(_transitionScreenPane);}
+    public void removeScreen(){ _root.getChildren().remove(_transitionScreenPane);
+    }
 
 }
