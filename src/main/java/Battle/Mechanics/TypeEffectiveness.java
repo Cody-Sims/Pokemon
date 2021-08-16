@@ -30,8 +30,6 @@ public class TypeEffectiveness {
         if(enemy.getTypeTwo().getWeaknesses().contains((move.getType()))){
             curEffectiveness *= 2;
         }
-
-
         return curEffectiveness;
     }
 }
