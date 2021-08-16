@@ -6,6 +6,7 @@ import com.almasb.fxgl.entity.component.Component;
 import com.almasb.fxgl.texture.AnimatedTexture;
 import com.almasb.fxgl.texture.AnimationChannel;
 import javafx.geometry.Point2D;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 public class PlayerAnimation extends Component {
@@ -14,11 +15,11 @@ public class PlayerAnimation extends Component {
     private AnimationChannel animIdle, animWalkRight,animWalkLeft, animWalkUp, animWalkDown;
 
     public PlayerAnimation(){
-        animIdle = new AnimationChannel(FXGL.image("dawn.png"), 12, 34, 31, Duration.seconds(1), 0, 0);
-        animWalkRight = new AnimationChannel(FXGL.image("dawn.png"), 12, 34, 31, Duration.seconds(1), 3, 5);
-        animWalkLeft = new AnimationChannel(FXGL.image("dawn.png"), 12, 34, 31, Duration.seconds(1), 9, 11);
-        animWalkUp = new AnimationChannel(FXGL.image("dawn.png"), 12, 34, 31, Duration.seconds(1), 6, 8);
-        animWalkDown = new AnimationChannel(FXGL.image("dawn.png"), 12, 34, 31, Duration.seconds(1), 0, 2);
+        animIdle = new AnimationChannel(FXGL.image("dawn.png"), 12, 18, 26, Duration.seconds(1), 0, 0);
+        animWalkRight = new AnimationChannel(FXGL.image("dawn.png"), 12, 18, 26, Duration.seconds(1), 2, 4);
+        animWalkLeft = new AnimationChannel(FXGL.image("dawn.png"), 12, 18, 26, Duration.seconds(1), 8, 10);
+        animWalkUp = new AnimationChannel(FXGL.image("dawn.png"), 12, 18, 26, Duration.seconds(1), 5, 7);
+        animWalkDown = new AnimationChannel(FXGL.image("dawn.png"), 12, 18, 26, Duration.seconds(1), 0, 1);
 
         texture = new AnimatedTexture(animIdle);
     }
@@ -54,7 +55,6 @@ public class PlayerAnimation extends Component {
     public void moveLeft() {
         speed = 2;
         entity.translateX(-speed);
-        speed = -150;
         if(texture.getAnimationChannel() != animWalkLeft){
             texture.loopAnimationChannel(animWalkLeft);
         }

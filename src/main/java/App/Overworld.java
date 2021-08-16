@@ -36,6 +36,7 @@ public class Overworld extends GameApplication {
 
     @Override
     protected void initUI() {
+        getGameScene().setBackgroundColor(Color.BLACK);
         //getGameScene().addUINode(new PaneOrganizer().getRoot()); // add battle to the game
     }
 
@@ -49,8 +50,7 @@ public class Overworld extends GameApplication {
         player = FXGL.entityBuilder()
                 .type(EntityType.PLAYER)
                 .at(300, 300)
-                .viewWithBBox(new Rectangle(25, 25, Color.BLUE))
-                //.bbox(new Box(42,30) );
+                .bbox(new HitBox(BoundingShape.box(18, 26)))
                 .with(new PlayerAnimation())
                 .with(new CollidableComponent(true))
                 .buildAndAttach();
